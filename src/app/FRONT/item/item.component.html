@@ -1,0 +1,21 @@
+<div class="card item-border">
+
+    <h4 class='card-header'>{{card.title}}</h4>
+    <button class="icon-edit btn-icon"><i class="bi bi-pencil-square"></i></button>
+
+    <hr>
+
+    <div class='card-body'>
+        <textarea class="form-control" rows="1">{{card.content}}</textarea>
+    </div>
+
+    <hr>
+
+    <div class="icon-space">
+        <button (click)='backwards()' class="btn-icon"><i class="bi bi-arrow-left-circle"></i></button>
+        <button (click)='deleteTask()' class="btn-icon"><i class="bi bi-trash"></i></button>
+        <button (click)='forwards()' class="btn-icon"><i class="bi bi-arrow-right-circle"></i></button>
+    </div>
+    
+
+</div>

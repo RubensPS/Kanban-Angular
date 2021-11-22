@@ -1,0 +1,13 @@
+<div class='card col-12 col-md-3 card-border'>
+    <h4 class='card-title title-text'>TO-DO</h4>
+    <h5 class='card-subtitle title-text'>Tasks that are not initiated</h5>
+    <div class='card-body'>
+        <div *ngFor='let card of cardList'>
+            <div *ngIf='card.stepID === 1'>
+                <app-item [card]='card'></app-item>
+            </div>
+        </div>
+        <button (click)='createCard()' class='btn btn-success'>Add New Task</button>
+    </div>
+</div>
+
