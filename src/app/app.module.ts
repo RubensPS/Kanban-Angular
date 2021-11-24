@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FRONTComponent } from './FRONT/front.component';
@@ -8,7 +10,8 @@ import { DoingComponent } from './FRONT/doing/doing.component';
 import { DoneComponent } from './FRONT/done/done.component';
 import { ItemComponent } from './FRONT/item/item.component';
 import { LoginComponent } from './login/login.component';
-import { CardService } from './card.service';
+import { AppRoutingModule } from './app-routing.module';
+import { APIService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,12 @@ import { CardService } from './card.service';
     LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [CardService],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,9 +4,9 @@ import { FRONTComponent } from "./FRONT/front.component";
 import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
+    {path: '', redirectTo: '/board', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'kanban', component: FRONTComponent},
-    
+    {path: 'board', component: FRONTComponent}
 ]
 
 @NgModule ({

@@ -18,11 +18,11 @@ export class ItemComponent implements OnInit {
   }
 
   backwards() {
-    this.card.stepID > 1 ? this.card.stepID-- : alert('This task is not in progress.');
+    
   }
 
   forwards() {
-    this.card.stepID < 3 ? this.card.stepID++ : alert('This task is finished.')
+    
   }
   
   deleteTask() {

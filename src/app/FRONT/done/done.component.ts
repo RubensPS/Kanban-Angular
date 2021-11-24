@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/card.model';
-import { CardService } from 'src/app/card.service';
 
 @Component({
   selector: 'app-done',
@@ -11,12 +10,10 @@ export class DoneComponent implements OnInit {
 
   cardList!: Card[];
 
-  constructor(
-    private cardService: CardService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.cardList = this.cardService.getList();
+    
   }
 
 }

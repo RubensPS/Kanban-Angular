@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CardService } from 'src/app/card.service';
 import { Card } from 'src/app/card.model';
 
 @Component({
@@ -12,11 +11,10 @@ export class DoingComponent implements OnInit {
   cardList!: Card[];
 
   constructor(
-    private cardService: CardService
-  ) { }
+) { }
 
   ngOnInit(): void {
-    this.cardList = this.cardService.getList();
+    
   }
 
 }

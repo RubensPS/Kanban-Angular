@@ -3,9 +3,9 @@
     <h5 class='card-subtitle title-text'>Tasks that are not initiated</h5>
     <div class='card-body'>
         <div *ngFor='let card of cardList'>
-            <div *ngIf='card.stepID === 1'>
+            <!-- <div *ngIf='card.list === 1'>
                 <app-item [card]='card'></app-item>
-            </div>
+            </div> -->
         </div>
         <button (click)='createCard()' class='btn btn-success'>Add New Task</button>
     </div>

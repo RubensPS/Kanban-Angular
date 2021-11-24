@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card.model';
-import { CardService } from '../card.service';
+import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-front',
@@ -8,15 +8,16 @@ import { CardService } from '../card.service';
   styleUrls: ['./front.component.css']
 })
 export class FRONTComponent implements OnInit {
-
-  cardList!: Card[];
-
-  constructor(
-    private cardService: CardService
-  ) { }
+ 
+  cardList!: any;
+  constructor( private apiService: APIService) {}
 
   ngOnInit(): void {
-    this.cardList = this.cardService.getList();
-  }
 
+    this.apiService.getAuth().subscribe((token) => {
+    localStorage.setItem('token', token);
+    })
+
+  }
+  
 }
