@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/card.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardID } from 'src/cardId.model';
 
 @Component({
   selector: 'app-doing',
@@ -8,10 +8,10 @@ import { Card } from 'src/app/card.model';
 })
 export class DoingComponent implements OnInit {
 
-  cardList!: Card[];
+  @Input() doingTaskList!: CardID[];
+  task!: CardID;
 
-  constructor(
-) { }
+  constructor() {}
 
   ngOnInit(): void {
     

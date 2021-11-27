@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from 'src/app/card.model';
+import { APIService } from 'src/app/api.service';
+import { CardID } from 'src/cardId.model';
 
 @Component({
   selector: 'app-item',
@@ -8,24 +9,63 @@ import { Card } from 'src/app/card.model';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() card!: Card
+  @Input() task!: CardID;
+  isEditing: boolean = false;
+  titleChange!: string;
+  contentChange!: string;
+  changeLista!: CardID;
+  editTitleContent!: CardID;
 
-  constructor(
-    
-  ) { }
+  constructor(private apiService: APIService) { }
 
   ngOnInit(): void {
+
   }
 
   backwards() {
-    
+    if (this.task.lista === 'Done') {
+      this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'Doing'}
+    } else if (this.task.lista === 'Doing') {
+      this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'ToDo'}
+    } else alert("This is the first task status!" )
+      this.apiService.editCard(this.changeLista).subscribe((task) => {
+        this.apiService.taskListChange.next(task);
+        console.log(task)});
   }
 
   forwards() {
-    
+    if (this.task.lista === 'ToDo') {
+      this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'Doing'}
+    } else if (this.task.lista === 'Doing') {
+      this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'Done'}
+    } else alert("This task is already finished!" )
+    this.apiService.editCard(this.changeLista).subscribe(task => {
+      this.apiService.taskListChange.next(task);
+      console.log(task)});
   }
   
   deleteTask() {
-    // this.card.delete()
+    this.apiService.deleteCard(this.task).subscribe(task => {
+      this.apiService.taskListChange.next(task);
+      console.log(task)});
   }
+
+  cancelChanges() {
+    this.isEditing = !this.isEditing;
+  }
+
+  confirmChanges() {
+    this.changeLista = {id: this.task.id, titulo: this.titleChange, conteudo: this.contentChange, lista: this.task.lista}
+    this.apiService.editCard(this.changeLista).subscribe(task => {
+      this.apiService.taskListChange.next(task);
+      console.log(task)});
+    this.isEditing = !this.isEditing;
+  }
+
+  toggle() {
+    this.isEditing = !this.isEditing;
+    this.titleChange = this.task.titulo;
+    this.contentChange = this.task.conteudo;
+  }
+
 }

@@ -2,10 +2,10 @@
     <h4 class='card-title title-text'>DOING</h4>
     <h5 class='card-subtitle title-text'>Tasks in progress</h5>
     <div class='card-body'>
-        <div *ngFor='let card of cardList'>
-            <!-- <div *ngIf='card.stepID === 2'>
-                <app-item [card]='card'></app-item>
-            </div> -->
+        <div *ngFor='let task of doingTaskList'>
+            <div *ngIf="task.lista === 'Doing'">
+                <app-item [task]='task'></app-item>
+            </div>
         </div>
     </div>
 </div>

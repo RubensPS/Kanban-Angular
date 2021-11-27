@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Card } from "./card.model";
 import { CardID } from "src/cardId.model";
 
@@ -10,10 +10,11 @@ import { CardID } from "src/cardId.model";
 
 export class APIService {
     
-    apiURL = 'http://localhost:5000';
+    apiURL = 'http://localhost:5000/';
     
     constructor ( private http: HttpClient) {}
 
+    taskListChange = new Subject()
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
@@ -26,7 +27,7 @@ export class APIService {
     }
 
     getAuth(): Observable<any> {
-        const isAuth = this.http.post(this.apiURL + '/login/', {'login':'letscode', 'senha':'lets@123'}, this.httpOptions)
+        const isAuth = this.http.post(this.apiURL + 'login/', {'login':'letscode', 'senha':'lets@123'}, this.httpOptions)
         return isAuth
     }
 
@@ -62,11 +63,11 @@ export class APIService {
                 'Authorization': `Bearer ${token}`
             })
         }
-        const putCard = this.http.put(this.apiURL + 'cards/{id}', card, header)
+        const putCard = this.http.put(this.apiURL + `cards/${card.id}`, card, header)
         return putCard
     }
 
-    deleteCard() {
+    deleteCard(card: CardID) {
         const token = this.getToken();
         const header = {
             headers: new HttpHeaders({
@@ -74,7 +75,7 @@ export class APIService {
                 'Authorization': `Bearer ${token}`
             })
         }
-        const delCard = this.http.delete(this.apiURL + 'cards/{id}', header)
+        const delCard = this.http.delete(this.apiURL + `cards/${card.id}`, header)
         return delCard
     }
 

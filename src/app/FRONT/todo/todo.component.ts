@@ -1,21 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from 'src/app/card.model';
+import { CardID } from 'src/cardId.model';
+
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
+
 export class TodoComponent implements OnInit {
 
-  cardList!: Card[];
-  
+  @Input() todoTaskList!: CardID[];
+  task!: CardID;
+
   constructor() {}
 
-  ngOnInit(): void {
-   
-  }
-
-  createCard() {
+  ngOnInit(): void { 
   }
 }

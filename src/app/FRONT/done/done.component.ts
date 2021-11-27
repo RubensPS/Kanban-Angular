@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from 'src/app/card.model';
+import { CardID } from 'src/cardId.model';
 
 @Component({
   selector: 'app-done',
@@ -8,7 +8,8 @@ import { Card } from 'src/app/card.model';
 })
 export class DoneComponent implements OnInit {
 
-  cardList!: Card[];
+  @Input() doneTaskList!: CardID[];
+  task!: CardID;
 
   constructor() { }
 
