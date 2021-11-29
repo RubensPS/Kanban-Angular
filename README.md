@@ -71,8 +71,9 @@ The app will automatically reload if you change any of the source files.
 ## Credentials
 
 The user will be able to login with the following credentials:
-	- username: "letscode";
-	- password: "lets@123".
+
+- username: "letscode";
+- password: "lets@123".
 
 
 # Final thoughts
