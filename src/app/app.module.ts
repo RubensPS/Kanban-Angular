@@ -12,7 +12,8 @@ import { DoneComponent } from './FRONT/done/done.component';
 import { ItemComponent } from './FRONT/item/item.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { APIService } from './api.service';
+import { APIService } from 'src/service/api.service';
+import { AuthGuard } from './auth-guard.service';
 import { NewItemComponent } from './FRONT/new-item/new-item.component';
 
 @NgModule({
@@ -33,7 +34,7 @@ import { NewItemComponent } from './FRONT/new-item/new-item.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [APIService],
+  providers: [APIService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

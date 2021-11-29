@@ -1,12 +1,14 @@
-import { Component, NgModule } from "@angular/core";
-import { RouterModule, Router, Routes } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 import { FRONTComponent } from "./FRONT/front.component";
 import { LoginComponent } from "./login/login.component";
+import { AuthGuard} from "./auth-guard.service";
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/board', pathMatch: 'full'},
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'board', component: FRONTComponent}
+    {path: 'kanban-board', component: FRONTComponent, canActivate: [AuthGuard]},
+    {path: '**', redirectTo: '/login'}
 ]
 
 @NgModule ({

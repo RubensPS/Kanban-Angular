@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subject } from "rxjs";
-import { Card } from "./card.model";
+import { Card } from "../app/card.model";
 import { CardID } from "src/cardId.model";
 
 @Injectable({
@@ -24,11 +24,6 @@ export class APIService {
     getToken() {
         const retrieveToken = localStorage.getItem('token');
         return retrieveToken;
-    }
-
-    getAuth(): Observable<any> {
-        const isAuth = this.http.post(this.apiURL + 'login/', {'login':'letscode', 'senha':'lets@123'}, this.httpOptions)
-        return isAuth
     }
 
     getCards(): Observable<any> {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card.model';
-import { APIService } from '../api.service';
+import { APIService } from '../../service/api.service';
 import { CardID } from 'src/cardId.model';
 
 @Component({
@@ -20,9 +20,13 @@ export class FRONTComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authenticate();
-
-    // this.apiService.taskListChange.subscribe(()=>this.getTasks());
+    this.apiService.taskListChange.subscribe({
+      next: () => this.getTasks(),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    });
+    
+    this.getTasks();
 
   }
   
@@ -40,23 +44,24 @@ export class FRONTComponent implements OnInit {
 
   confirm() {
     this.card = new Card(this.title, this.content, "ToDo");
-    this.apiService.newCard(this.card).subscribe((task) =>{
-      this.apiService.taskListChange.next(task);
-      console.log(task)})
+    
+    this.apiService.newCard(this.card).subscribe({
+      next: (task) => this.apiService.taskListChange.next(task),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
+
     this.show = !this.show;
     this.title = '';
     this.content = '';
   }
 
-  authenticate() {
-    this.apiService.getAuth().subscribe((token) => {
-      localStorage.setItem('token', token);
-      this.getTasks();
-      })
+  getTasks() {
+    this.apiService.getCards().subscribe({
+      next: (res: CardID[]) => this.cardList = res,
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
   }
 
-  getTasks() {
-    this.apiService.getCards().subscribe((res: CardID[]) => 
-    this.cardList = res) 
-  }
 }

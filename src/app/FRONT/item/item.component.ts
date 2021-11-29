@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { APIService } from 'src/app/api.service';
+import { APIService } from 'src/service/api.service';
 import { CardID } from 'src/cardId.model';
 
 @Component({
@@ -28,9 +28,12 @@ export class ItemComponent implements OnInit {
     } else if (this.task.lista === 'Doing') {
       this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'ToDo'}
     } else alert("This is the first task status!" )
-      this.apiService.editCard(this.changeLista).subscribe((task) => {
-        this.apiService.taskListChange.next(task);
-        console.log(task)});
+
+    this.apiService.editCard(this.changeLista).subscribe({
+      next: (p) => this.apiService.taskListChange.next(p),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
   }
 
   forwards() {
@@ -38,16 +41,21 @@ export class ItemComponent implements OnInit {
       this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'Doing'}
     } else if (this.task.lista === 'Doing') {
       this.changeLista = {id: this.task.id, titulo: this.task.titulo, conteudo: this.task.conteudo, lista: 'Done'}
-    } else alert("This task is already finished!" )
-    this.apiService.editCard(this.changeLista).subscribe(task => {
-      this.apiService.taskListChange.next(task);
-      console.log(task)});
+    } else alert("This task is already finished!")
+
+    this.apiService.editCard(this.changeLista).subscribe({
+      next: (p) => this.apiService.taskListChange.next(p),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
   }
   
   deleteTask() {
-    this.apiService.deleteCard(this.task).subscribe(task => {
-      this.apiService.taskListChange.next(task);
-      console.log(task)});
+    this.apiService.deleteCard(this.task).subscribe({
+      next: (p) => this.apiService.taskListChange.next(p),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
   }
 
   cancelChanges() {
@@ -56,10 +64,13 @@ export class ItemComponent implements OnInit {
 
   confirmChanges() {
     this.changeLista = {id: this.task.id, titulo: this.titleChange, conteudo: this.contentChange, lista: this.task.lista}
-    this.apiService.editCard(this.changeLista).subscribe(task => {
-      this.apiService.taskListChange.next(task);
-      console.log(task)});
-    this.isEditing = !this.isEditing;
+    
+    this.apiService.editCard(this.changeLista).subscribe({
+      next: (p) => this.apiService.taskListChange.next(p),
+      error: (e) => console.log(e),
+      complete: () => console.log('complete')
+    })
+      this.isEditing = !this.isEditing;
   }
 
   toggle() {
