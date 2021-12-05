@@ -1,0 +1,37 @@
+<div class="card item-border" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}">
+    <ng-container *ngIf='!isEditing'>
+        <h4 class='card-header'>{{task.titulo}}</h4>
+        <button (click) = 'toggle()' class="icon-edit btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-pencil-square"></i></button>
+
+        <hr>
+
+        <div class='card-body'>
+            <p rows="1" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}">{{task.conteudo}}</p>
+        </div>
+
+        <hr>
+
+        <div class="icon-space">
+            <button (click)='backwards()' class="btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-arrow-left-circle"></i></button>
+            <button (click)='deleteTask()' class="btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-trash"></i></button>
+            <button (click)='forwards()' class="btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-arrow-right-circle"></i></button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf='isEditing'>
+        <input [(ngModel)]='titleChange' value='titleChange' class='card-header form-control' [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}">
+
+        <hr>
+
+        <div class='card-body'>
+            <textarea [(ngModel)]='contentChange' class="form-control" rows="1" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"></textarea>
+        </div>
+
+        <hr>
+
+        <div class="icon-space">
+            <button (click)='cancelChanges()' class="btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-x-circle-fill"></i></button>
+            <button (click)='confirmChanges()' class="btn-icon" [ngStyle]="{'background-color': this.task.lista === 'Done' ? 'lightgreen' : this.task.lista === 'Doing' ? '#FFD580' : '#ffcccb'}"><i class="bi bi-check-circle-fill"></i></button>
+        </div>
+    </ng-container>
+</div>

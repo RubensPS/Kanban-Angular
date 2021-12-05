@@ -1,0 +1,12 @@
+<div class="card item-border">
+
+    <h4 class='card-header'>New Task</h4>
+    <hr>
+    <div class='card-body'>
+        <label class='structure' for='Titulo'>Título:</label>
+        <input type='text' name="Titulo" [(ngModel)]='titulo' (keyup)= 'sendTitulo()' required>
+
+        <label class='structure' for='Conteudo'>Conteúdo:</label>
+        <textarea type='text' cols='22' name='Conteudo' [(ngModel)]='conteudo' (keyup)='sendConteudo()' required></textarea>
+    </div>
+</div>

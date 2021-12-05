@@ -1,0 +1,11 @@
+<div class='card col-12 col-md-3 card-border'>
+    <h4 class='card-title title-text'>DOING</h4>
+    <h5 class='card-subtitle title-text'>Tasks in progress</h5>
+    <div class='card-body'>
+        <div *ngFor='let task of doingTaskList'>
+            <div *ngIf="task.lista === 'Doing'">
+                <app-item [task]='task'></app-item>
+            </div>
+        </div>
+    </div>
+</div>

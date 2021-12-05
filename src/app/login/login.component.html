@@ -1,0 +1,11 @@
+<div class='container col-md-3 card-border'>
+    <form [formGroup]='form' (ngSubmit)='login()'>
+        <label for='username'>Username:</label>
+        <input type='text' placeholder="Enter username" name="username" formControlName='username' required>
+
+        <label for='Password'>Password:</label>
+        <input type='password' placeholder="Enter password" name='Password' formControlName='password' required>
+
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+</div>

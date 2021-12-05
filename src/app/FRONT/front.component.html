@@ -1,0 +1,17 @@
+<h2>KANBAN - Workflow Management</h2>
+<button (click)='toggle()' class='btn btn-success'>Add New Task</button>
+
+<div class='row'>
+    <app-todo [todoTaskList] = 'cardList'></app-todo>
+    <app-doing [doingTaskList] = 'cardList'></app-doing>
+    <app-done [doneTaskList] = 'cardList'></app-done>
+</div>
+
+<ng-container *ngIf='show'>
+    <div class='col-12 col-md-3 newTask'>
+        <span class="close" (click)='toggle()'>&times;</span>
+        <app-new-item (emitTitulo)='getTitulo($event)' (emitConteudo)='getConteudo($event)'></app-new-item>
+        <button (click)='confirm()' class="btn btn-success">Confirm</button>
+    </div>
+    <div (click)="toggle()" class="overlay"></div>
+</ng-container>
